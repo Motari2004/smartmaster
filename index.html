@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>AI Vault Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: #0a0a0a;
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #f0f0f0 60%, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .header p {
+            color: #888;
+            font-size: 1rem;
+            margin-top: 0.5rem;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background: #141414;
+            border: 1px solid #2a2a2a;
+            border-radius: 16px;
+            padding: 2rem 1.5rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-4px);
+            border-color: #1185fe;
+            box-shadow: 0 8px 30px rgba(17, 133, 254, 0.08);
+        }
+
+        .card:active {
+            transform: scale(0.97);
+        }
+
+        .card-icon {
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            background: rgba(255,255,255,0.04);
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            border: 1px solid #2a2a2a;
+        }
+
+        .card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+            letter-spacing: -0.01em;
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: #888;
+            line-height: 1.5;
+            margin-bottom: 1.2rem;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            padding: 0.6rem 1.4rem;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            font-family: inherit;
+            border: none;
+            background: #1185fe;
+            color: #fff;
+            cursor: pointer;
+            transition: background 0.2s ease, transform 0.15s ease;
+            box-shadow: 0 4px 15px rgba(17, 133, 254, 0.25);
+            text-decoration: none;
+        }
+
+        .card-btn:hover {
+            background: #0a6fd9;
+            transform: translateY(-2px);
+        }
+
+        .card-btn:active {
+            transform: scale(0.95);
+        }
+
+        .card-btn i {
+            font-size: 0.8rem;
+        }
+
+        .card-bsky .card-icon { color: #1185fe; }
+        .card-fb .card-icon { color: #1877f2; }
+        .card-threads .card-icon { color: #fff; }
+        .card-ig .card-icon { color: #e4405f; }
+
+        /* Status badge for each service */
+        .status-badge {
+            font-size: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 2px 8px;
+            border-radius: 12px;
+            background: rgba(34, 197, 94, 0.15);
+            color: #22c55e;
+            border: 1px solid rgba(34, 197, 94, 0.2);
+            margin-top: 4px;
+        }
+
+        @media (max-width: 640px) {
+            body { padding: 1rem; }
+            .header h1 { font-size: 1.6rem; }
+            .grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
+            .card { padding: 1.5rem 1rem 1.2rem; }
+            .card-icon { width: 56px; height: 56px; font-size: 2rem; }
+            .card h3 { font-size: 1rem; }
+            .card p { font-size: 0.75rem; }
+            .card-btn { font-size: 0.75rem; padding: 0.5rem 1rem; }
+        }
+
+        @media (max-width: 480px) {
+            .grid { grid-template-columns: 1fr; max-width: 320px; margin: 0 auto; }
+            .header h1 { font-size: 1.4rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 AI Vault Hub</h1>
+            <p>Choose your destination</p>
+        </div>
+
+        <div class="grid">
+            <a href="https://smartbluesky.vercel.app" target="_blank" rel="noopener noreferrer" class="card card-bsky">
+                <div class="card-icon"><i class="fas fa-cloud"></i></div>
+                <h3>Bluesky</h3>
+                <p>Fetch, vault, and post to Bluesky.</p>
+                <span class="card-btn">Launch <i class="fas fa-arrow-right"></i></span>
+                <span class="status-badge">● Live</span>
+            </a>
+
+            <a href="https://smartfacebook.vercel.app" target="_blank" rel="noopener noreferrer" class="card card-fb">
+                <div class="card-icon"><i class="fab fa-facebook-f"></i></div>
+                <h3>Facebook</h3>
+                <p>Fetch from Bluesky, post to Facebook.</p>
+                <span class="card-btn">Launch <i class="fas fa-arrow-right"></i></span>
+                <span class="status-badge">● Live</span>
+            </a>
+
+            <a href="https://smarthreads.vercel.app" target="_blank" rel="noopener noreferrer" class="card card-threads">
+                <div class="card-icon"><i class="fas fa-comment-dots"></i></div>
+                <h3>Threads</h3>
+                <p>Fetch from Bluesky, post to Threads.</p>
+                <span class="card-btn">Launch <i class="fas fa-arrow-right"></i></span>
+                <span class="status-badge">● Live</span>
+            </a>
+
+            <a href="https://smartinstagram.vercel.app" target="_blank" rel="noopener noreferrer" class="card card-ig">
+                <div class="card-icon"><i class="fab fa-instagram"></i></div>
+                <h3>Instagram</h3>
+                <p>Fetch from Bluesky, post to Instagram.</p>
+                <span class="card-btn">Launch <i class="fas fa-arrow-right"></i></span>
+                <span class="status-badge">● Live</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
